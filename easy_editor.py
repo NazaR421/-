@@ -1,6 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QPushButton, QLabel, QVBoxLayout, \
-    QHBoxLayout, QApplication, QListWidget
+    QHBoxLayout, QApplication, QListWidget,QFileDialog
+import os                      
 
 app = QApplication([])
 
@@ -15,7 +16,7 @@ btn_sharpness = QPushButton("Різкість")
 btn_gray = QPushButton("Ч/Б")
 btn_folder = QPushButton("Папка")
 list_photo = QListWidget()
-photo = QLabel("")
+photo = QLabel("Тут буде картинка")
 
 layout_list = QVBoxLayout()
 layout_list.addWidget(btn_folder)
@@ -36,7 +37,37 @@ layout_main = QHBoxLayout()
 layout_photo.addLayout(layout_btn)
 layout_main.addLayout(layout_list, 20)
 layout_main.addLayout(layout_photo, 80)
-
 editor_window.setLayout(layout_main)
+
+workdir=""
+
+def choooseWorkdir():
+    global workdir
+    workdir=QFileDialog.getExistingDirectory()
+
+def filter(files,extensions):
+    result=[]
+    for filename in files:
+        for ext in extensions:
+            if filename.endswith(ext):
+                result.append(filename)
+    return result
+
+def showFilenamesList():
+    global workdir
+    extensions=[".jpg",".jpeg",".png",".gif"]
+    choooseWorkdir()
+    filenames= filter(os.listdir(workdir),extensions)
+    list_photo.clear()
+    for filename in filenames:
+        list_photo.addItem(filename)
+
+    
+btn_folder.clicked.connect(showFilenamesList)
+
+
+
+
+
 editor_window.show()
 app.exec_()
