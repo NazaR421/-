@@ -11,7 +11,7 @@ x2=300
 y2=300
 
 sprite1 = transform.scale(image.load("sprite1.jpg"),(100,100))
-sprite2 = transform.scale(image.load("sprite2.jpg"),(200,200))
+sprite2 = transform.scale(image.load("sprite2.jpg"),(100,100))
 speed=10
 
 
@@ -26,7 +26,7 @@ while run:
 
     for e in event.get():
         if e.type ==QUIT:
-            game=False
+            run=False
 
     keys_pressed=key.get_pressed()
     if keys_pressed[K_LEFT] and x1>5:
