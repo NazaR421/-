@@ -24,16 +24,10 @@ while run:
     window.blit(sprite1,(x1,y1))
     window.blit(sprite2,(x2,y2))
 
-game=True
-while game:
-    window.blit(background,(0,0))
-
     for e in event.get():
         if e.type ==QUIT:
             game=False
 
-
-while run:
     keys_pressed=key.get_pressed()
     if keys_pressed[K_LEFT] and x1>5:
         x1 -=speed
@@ -52,6 +46,10 @@ while run:
         y2 -=speed
     if keys_pressed[K_s] and y2>395:
         y2 +=speed
+
+
+    display.update()
+    clock.tick(FPS)
 
 
     display.update()
