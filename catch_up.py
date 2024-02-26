@@ -31,26 +31,23 @@ while run:
     keys_pressed=key.get_pressed()
     if keys_pressed[K_LEFT] and x1>5:
         x1 -=speed
-    if keys_pressed[K_RIGHT] and x1>595:
+    if keys_pressed[K_RIGHT] and x1<595:
         x1 +=speed
     if keys_pressed[K_UP] and y1>5:
         y1 -=speed
-    if keys_pressed[K_DOWN] and y1>395:
+    if keys_pressed[K_DOWN] and y1<395:
         y1 +=speed
 
     if keys_pressed[K_a] and x2>5:
         x2 -=speed
-    if keys_pressed[K_d] and x2>595:
+    if keys_pressed[K_d] and x2<595:
         x2 +=speed
     if keys_pressed[K_w]and y2>5:
         y2 -=speed
-    if keys_pressed[K_s] and y2>395:
+    if keys_pressed[K_s] and y2<395:
         y2 +=speed
 
 
     display.update()
     clock.tick(FPS)
 
-
-    display.update()
-    clock.tick(FPS)
