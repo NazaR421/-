@@ -6,7 +6,7 @@ class GameSprite(sprite.Sprite):
     def __init__(self, player_image, player_x, player_y, player_speed):
         super().__init__()
         
-        self.image = transform.scale(image.load(player_image), (100, 100))
+        self.image = transform.scale(image.load(player_image), (65, 65))
         self.speed = player_speed
         
         self.rect = self.image.get_rect()
@@ -18,6 +18,7 @@ class GameSprite(sprite.Sprite):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
 class Player(GameSprite):
+    
     def update(self):
         keys = key.get_pressed()
         if keys[K_LEFT] and self.rect.x > 5:
@@ -28,6 +29,7 @@ class Player(GameSprite):
             self.rect.y -= self.speed
         if keys[K_DOWN] and self.rect.y < win_height - 80:
             self.rect.y += self.speed
+        
 
 
 
@@ -63,8 +65,8 @@ class Wall(sprite.Sprite):
         window.blit(self.image,(self.rect.x,self.rect.y))
 
 
-win_width = 700
-win_height = 500
+win_width = 900
+win_height = 700
 
 
 window = display.set_mode((win_width, win_height))
@@ -72,15 +74,15 @@ display.set_caption("Maze")
 background = transform.scale(image.load("globalroom.jpg"), (win_width, win_height))
  
 
-player = Player('hero.png', 5, win_height - 80, 4)
-monster = Enemy('monster.png', win_width - 80, 280, 2)
+player = Player('hero.png', 40,100,4)
+monster = Enemy('monster.png',   100, 250, 1)
 money = GameSprite('money.jpg', win_width - 120, win_height - 80, 0)
-w1=Wall(154,205,50,100,20,450,10)
-w2=Wall(154,205,50,100,20,10,360)
-w3=Wall(154,205,50,210,130,10,400)
-w4=Wall(154,205,50,320,20,10,350)
-w5=Wall(154,205,50,430,130,10,400)
-w6=Wall(154,205,50,430,350,100,10)
+w2=Wall(255,165,0,130,1,10,400)
+w3=Wall(255,165,0,130,520,10,80)
+w4=Wall(255,165,0,130,600,280,10)
+w5=Wall(255,165,0,130,520,120,10)
+w6=Wall(255,165,0,250,290,10,240)
+w7=Wall(143, 71, 40,250,420,100,1)
 
 game = True
 clock = time.Clock()
@@ -108,22 +110,27 @@ while game:
         player.reset()
         monster.reset()
         money.reset()
-        w1.draw_wall()
+        
         w2.draw_wall()
         w3.draw_wall()
         w4.draw_wall()
         w5.draw_wall()
         w6.draw_wall()
-        
+        w7.draw_wall()
+        #w8.draw_wall()
+        #w9.draw_wall()
+        #w10.draw_wall()
+        #w11.draw_wall()
+        #w12.draw_wall()
+        #w13.draw_wall()
+
     if sprite.collide_rect(player,monster):
         finish=True
         window.blit(lose,(250,200))
     if sprite.collide_rect(player,money):
         finish=True
         window.blit(win,(250,200))
-    if sprite.collide_rect(player,w1):
-        finish=True
-        window.blit(lose,(250,200))
+
     if sprite.collide_rect(player,w2):
         finish=True
         window.blit(lose,(250,200))
@@ -137,6 +144,9 @@ while game:
         finish=True
         window.blit(lose,(250,200))
     if sprite.collide_rect(player,w6):
+        finish=True
+        window.blit(lose,(250,200))
+    if sprite.collide_rect(player,w7):
         finish=True
         window.blit(lose,(250,200))
 
