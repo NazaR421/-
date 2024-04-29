@@ -6,7 +6,7 @@ class GameSprite(sprite.Sprite):
     def __init__(self, player_image, player_x, player_y, player_speed):
         super().__init__()
         
-        self.image = transform.scale(image.load(player_image), (65, 65))
+        self.image = transform.scale(image.load(player_image), (65,65))
         self.speed = player_speed
         
         self.rect = self.image.get_rect()
@@ -71,7 +71,7 @@ win_height = 700
 
 window = display.set_mode((win_width, win_height))
 display.set_caption("Maze")
-background = transform.scale(image.load("globalroom.png"), (win_width, win_height))
+background = transform.scale(image.load("globalroom.jpg"), (win_width, win_height))
  
 
 player = Player('hero.png', 40,100,4)
@@ -82,8 +82,16 @@ w3=Wall(255,165,0,130,520,10,80)
 w4=Wall(255,165,0,130,600,280,10)
 w5=Wall(255,165,0,130,520,120,10)
 w6=Wall(255,165,0,250,290,10,240)
-w7=Wall(143, 71, 40,250,420,100,1)
-w8=Wall(143,165,0,340,200,10,220)
+w7=Wall(252,225,104,250,420,100,1)
+w8=Wall(255,165,0,340,200,10,220)
+w9=Wall(255,165,0,250,190,100,10)
+w10=Wall(255,165,0,250,100,10,100)
+w11=Wall(255,165,0,250,100,100,10)
+w12=Wall(255,165,0,450,0,10,400)
+w13=Wall(255,165,0,400,500,350,10)
+w14=Wall(255,165,0,450,400,185,10)
+w15=Wall(255,165,0,540,290,200,10)
+w16=Wall(255,165,0,450,200,185,10)
 game = True
 clock = time.Clock()
 FPS = 60
@@ -118,11 +126,16 @@ while game:
         w6.draw_wall()
         w7.draw_wall()
         w8.draw_wall()
-        #w9.draw_wall()
-        #w10.draw_wall()
-        #w11.draw_wall()
-        #w12.draw_wall()
-        #w13.draw_wall()
+        w9.draw_wall()
+        w10.draw_wall()
+        w11.draw_wall()
+        w12.draw_wall()
+        w13.draw_wall()
+        w14.draw_wall()
+        w15.draw_wall()
+        w16.draw_wall()
+        #w17.draw_wall()
+        #w18.draw_wall()
 
     if sprite.collide_rect(player,monster):
         finish=True
@@ -149,12 +162,17 @@ while game:
     if sprite.collide_rect(player,w7):
         finish=True
         window.blit(lose,(250,200))
+    if sprite.collide_rect(player,w8):
+        finish=True
+        window.blit(lose,(250,200))
+    if sprite.collide_rect(player,w9):
+        finish=True
+        window.blit(lose,(250,200))
+
+
 
     
 
-
-    display.update()
-    clock.tick(FPS)
 
     display.update()
     clock.tick(FPS)
