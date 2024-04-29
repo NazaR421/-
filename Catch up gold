@@ -71,19 +71,19 @@ win_height = 700
 
 window = display.set_mode((win_width, win_height))
 display.set_caption("Maze")
-background = transform.scale(image.load("globalroom.jpg"), (win_width, win_height))
+background = transform.scale(image.load("globalroom.png"), (win_width, win_height))
  
 
 player = Player('hero.png', 40,100,4)
 monster = Enemy('monster.png',   100, 250, 1)
-money = GameSprite('money.jpg', win_width - 120, win_height - 80, 0)
+money = GameSprite('money.png', win_width - 120, win_height - 80, 0)
 w2=Wall(255,165,0,130,1,10,400)
 w3=Wall(255,165,0,130,520,10,80)
 w4=Wall(255,165,0,130,600,280,10)
 w5=Wall(255,165,0,130,520,120,10)
 w6=Wall(255,165,0,250,290,10,240)
 w7=Wall(143, 71, 40,250,420,100,1)
-
+w8=Wall(143,165,0,340,200,10,220)
 game = True
 clock = time.Clock()
 FPS = 60
@@ -117,7 +117,7 @@ while game:
         w5.draw_wall()
         w6.draw_wall()
         w7.draw_wall()
-        #w8.draw_wall()
+        w8.draw_wall()
         #w9.draw_wall()
         #w10.draw_wall()
         #w11.draw_wall()
@@ -152,6 +152,9 @@ while game:
 
     
 
+
+    display.update()
+    clock.tick(FPS)
 
     display.update()
     clock.tick(FPS)
