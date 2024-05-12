@@ -16,7 +16,7 @@ img_fire="bullet.png"
 font.init()
 font1=font.Font(None,36)
 font2=font.Font(None,80)
-win =font2.render("YOU WiIN!",True,(117, 242, 7))
+win =font2.render("YOU WON!",True,(180,0,0))
 lose =font2.render("YOU LOSE!",True,(180,0,0))
 score=0
 money=0
@@ -127,14 +127,11 @@ while run:
         if e.type ==QUIT:
             run=False
         elif e.type==KEYDOWN:
-            if e.key==K_SPACE:
-                if num_fire<5 and rel_time==False:
-                    num_fire=num_fire+1
-                    player.fire()
+            if e.key==K_r:
                 if num_fire>=5 and rel_time==False:
                     last_time=timer()
                     rel_time=True
-            if e.key==K_LCTRL:
+            if e.key==K_w:
                 if num_fire<5 and rel_time==False:
                     num_fire=num_fire+1
                     player.fire()
@@ -189,26 +186,29 @@ while run:
                 rel_time=False
         collides=sprite.groupcollide(monsters,bullets,True,True)
         for c in collides:
-            score=score+1
             monster=Enemy(img_monster,randint(5,820),-30,80,50,randint(1,5))
             monsters.add(monster)
 
    
         
-        if score>=15:
+        if score>=3:
             finish=False
-            window.blit(win,(200,200))
+            window.blit(lose,(300,300))
+        if money>=5:
+            finish=False
+            window.blit(win,(300,300))
         if sprite.collide_rect(player,w2) or sprite.collide_rect(player,w3) or sprite.collide_rect(player,w4) or sprite.collide_rect(player,w5) or sprite.collide_rect(player,w6) or sprite.collide_rect(player,w7) or sprite.collide_rect(player,w8) or sprite.collide_rect(player,w9):
             player.rect.x=10
             player.rect.y=400
+            score=score+1
         if sprite.collide_rect(player,w10)  or sprite.collide_rect(player,w11) or sprite.collide_rect(player,w12) or sprite.collide_rect(player,w13) or sprite.collide_rect(player,w14) or sprite.collide_rect(player,w15) or sprite.collide_rect(player,w16) or sprite.collide_rect(player,w17) or sprite.collide_rect(player,w18):
             player.rect.x=820
             player.rect.y=20
-        
+            score=score+1
         if sprite.collide_rect(player,coin):
             coin.rect.x=randint(50,850)
             coin.rect.y=randint(50,650)
             money=money+1
-        
+
         display.update()
     time.delay(60)
