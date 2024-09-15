@@ -103,10 +103,10 @@ class Car2(Screen):
         self.manager.transition.direction="up"
         self.manager.current="car3"
     def next3(self):
-        self.manager.transition.direction="up"
+        self.manager.transition.direction="down"
         self.manager.current="car4"
     def next4(self):
-        self.manager.transition.direction="up"
+        self.manager.transition.direction="right"
         self.manager.current="car5"
 class Car3(Screen):
     def __init__(self, **kwargs):
@@ -135,19 +135,56 @@ class Car3(Screen):
         line.add_widget(return1)
         return1.on_press=self.next5
     def next5(self):
-        self.manager.transition.direction="up"
+        self.manager.transition.direction="Left"
         self.manager.current="one"
+
 class Car4(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         line=FloatLayout()
         self.add_widget(line)
+        lab_name = Label(text="Ви вибрали кросовери, цінова категорія 10000$-50000$.Результат знизу.", 
+                                        size_hint=(0.2,0.05), pos_hint={"y":0.9,"x":0.4})
+        bmw = Label(text="1)BMW X5 2015 ціна 27.500$.Пробіг-256000тис.км.Паливо дизель 3.0\nКоробка автомат.Знаходиться в м.Чернівці.Номер продавця-(0505669106)", 
+                         size_hint=(0.2,0.05), pos_hint={"y":0.75,"x":0.24 })
+        Tesla = Label(text="2)Tesla Model X 2017 ціна 25.900$.Пробіг-121000тис.км.Паливо електрична 245кВт\nКоробка автомат.Знаходиться в м.Київ.Номер продавця-(0938218471)", 
+                         size_hint=(0.2,0.05), pos_hint={"y":0.63,"x":0.27})
+        audi = Label(text="3)Audi Q7 2018 ціна 35.000$.Пробіг-283000тисю.км.Паливо Дизель 3.0\nКоробка автомат. Знаходиться в Стрий,Львівська обл.Номер продавця-(0963649000)", 
+                         size_hint=(0.2,0.05), pos_hint={"y":0.48,"x":0.282})
+        Toyota = Label(text="4)Toyota Land Cruiser Prado 2010 ціна 25.000$.Пробіг-215000тис.км.Паливо дизель 3.0\nКоробка автомат. Знаходиться в м.Одеса.Номер продавця-(0955833367)", 
+                         size_hint=(0.2,0.05), pos_hint={"y":0.33,"x":0.281})
+        mazda = Label(text="5)Mazda CX-5 2020 ціна 21.399$.Пробіг 58000тис.км.Паливо бензин 2.5\nКоробка автомат.Знаходиться в м.Вінниця.Номер продавця-(0937314642)", 
+                         size_hint=(0.2,0.05), pos_hint={"y":0.23,"x":0.23})
+        return1=Button(text="Назад",size_hint=(0.3,0.2),pos_hint={"x":0.3,"y":0.01})
+        line.add_widget(lab_name)
+        line.add_widget(bmw)
+        line.add_widget(Toyota)
+        line.add_widget(audi)
+        line.add_widget(Tesla)
+        line.add_widget(mazda)
+        line.add_widget(return1)
+        return1.on_press=self.next5
+    def next5(self):
+        self.manager.transition.direction="down"
+        self.manager.current="one"
 class Car5(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         line=FloatLayout()
         self.add_widget(line)
-
+        lab_name = Label(text="Ви вибрали суперкар, цінова категорія 10000$-50000$.Результат знизу.", 
+                                        size_hint=(0.2,0.05), pos_hint={"y":0.9,"x":0.4})
+        bmw = Label(text="1)BMW X5 2015 ціна 27.500$.Пробіг-256000тис.км.Паливо дизель 3.0\nКоробка автомат.Знаходиться в м.Чернівці.Номер продавця-(0505669106)", 
+                         size_hint=(0.2,0.05), pos_hint={"y":0.75,"x":0.24 })
+        Tesla = Label(text="2)Tesla Model X 2017 ціна 25.900$.Пробіг-121000тис.км.Паливо електрична 245кВт\nКоробка автомат.Знаходиться в м.Київ.Номер продавця-(0938218471)", 
+                         size_hint=(0.2,0.05), pos_hint={"y":0.63,"x":0.27})
+        audi = Label(text="3)Audi Q7 2018 ціна 35.000$.Пробіг-283000тисю.км.Паливо Дизель 3.0\nКоробка автомат. Знаходиться в Стрий,Львівська обл.Номер продавця-(0963649000)", 
+                         size_hint=(0.2,0.05), pos_hint={"y":0.48,"x":0.282})
+        Toyota = Label(text="4)Toyota Land Cruiser Prado 2010 ціна 25.000$.Пробіг-215000тис.км.Паливо дизель 3.0\nКоробка автомат. Знаходиться в м.Одеса.Номер продавця-(0955833367)", 
+                         size_hint=(0.2,0.05), pos_hint={"y":0.33,"x":0.281})
+        mazda = Label(text="5)Mazda CX-5 2020 ціна 21.399$.Пробіг 58000тис.км.Паливо бензин 2.5\nКоробка автомат.Знаходиться в м.Вінниця.Номер продавця-(0937314642)", 
+                         size_hint=(0.2,0.05), pos_hint={"y":0.23,"x":0.23})
+        
 class MyApp(App):
     def build(self):
         main_screen= ScreenManager()
@@ -159,6 +196,11 @@ class MyApp(App):
         main_screen.add_widget(Car4(name="car4"))
         main_screen.add_widget(Car5(name="car5"))
         return main_screen
+    
+
+
+app = MyApp()
+app.run()
     
 
 
