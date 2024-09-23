@@ -1,0 +1,12 @@
+from direct.showbase.ShowBase import ShowBase
+
+class Game(ShowBase):
+    def __init__(self):
+        ShowBase.__init__(self)
+        self.model=self.loader.loadModel("Fighter.egg")
+        self.model.reparentTo(self.render)
+        self.model.setScale(0.1)
+        self.model.setScale(-2,25,-3)
+        base.camLens.setFov(90)
+game=Game()
+game.run()
