@@ -39,16 +39,18 @@ class Mapmanager():
 
 
     def loadLand(self, filename):
-       self.clear()
-       with open(filename) as file:
-           y = 0
-           for line in file:
-               x = 0
-               line = line.split(' ')
-               for z in line:
-                   for z10 in range(int(z)+1):
-                       block = self.addBlock((x, y, z10))
-                   x += 1
-               y += 1
+        self.clear()
+        with open(filename) as file:
+            y = 0
+            for line in file:
+                x = 0
+                line = line.split(' ')
+                for z in line:
+                    for z0 in range(int(z)+1):
+                        block = self.addBlock((x, y, z0))
+                    x += 1
+                y += 1
+        self.addBlock((0,10,7))
+
 
 
